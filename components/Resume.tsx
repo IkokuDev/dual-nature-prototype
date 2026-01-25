@@ -33,7 +33,7 @@ export const Resume: React.FC<ResumeProps> = ({ isDark }) => {
 
   const content = {
     light: {
-      header: "The Architect",
+      header: "Software Architect",
       title: "AI Architect of the Pre-Collapse",
       role: "Solutions Strategist",
       company: "Nakachi Consulting",
@@ -76,6 +76,7 @@ export const Resume: React.FC<ResumeProps> = ({ isDark }) => {
       <div className="grid grid-cols-1 gap-16">
         {/* Main Persona Card */}
         <ProjectCard
+          id={current.id}
           title={current.title}
           role={current.role}
           company={current.company}
@@ -87,7 +88,7 @@ export const Resume: React.FC<ResumeProps> = ({ isDark }) => {
         {/* Dynamic Project Cards */}
         {projects.map((project) => (
           <ProjectCard
-            key={project.id}
+            id={project.id}
             title={project.title}
             role={project.role || 'Engineer'}
             company={project.company || 'Personal'}

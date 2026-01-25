@@ -10,29 +10,44 @@ export const Hero: React.FC<HeroProps> = ({ isDark }) => {
       {isDark ? (
         <div className="space-y-8">
           <div className="inline-block border border-[var(--text-color)] px-6 py-2 text-xs tracking-[0.4em] font-bold mb-4 bg-black/50 backdrop-blur-md">
-             SECTOR: IMPERIALIS
+            SECTOR: IMPERIALIS
           </div>
           <h1 className="text-6xl md:text-9xl font-black mb-4 uppercase leading-[0.85] burn-text tracking-tighter">
-            THE VOID<br/>HUNTERS
+            THE VOID<br />HUNTERS
           </h1>
           <p className="text-xl md:text-2xl text-[var(--secondary-text)] max-w-2xl mx-auto font-bold tracking-widest border-l-4 border-red-900 pl-6 text-left font-mono">
             "Blessed is the mind too small for doubt."
           </p>
         </div>
       ) : (
-        <div className="space-y-8">
-           <div className="inline-block text-[var(--accent-color)] px-4 py-1 text-sm tracking-[0.3em] font-bold mb-4 uppercase">
-             The Great Gig in the Sky
-          </div>
-          <h1 className="text-7xl md:text-9xl font-normal mb-6 uppercase tracking-normal italic burn-text">
-            Echoes of <br/><span className="text-[var(--accent-color)] not-italic font-bold">The Horizon</span>
-          </h1>
-          <p className="text-2xl md:text-3xl font-light leading-relaxed max-w-3xl mx-auto opacity-90 font-heading">
-            We are just two lost souls swimming in a fish bowl, year after year.
-          </p>
-          <div className="w-px h-24 bg-[var(--accent-color)] mx-auto mt-12 opacity-50"></div>
-        </div>
+
+        <div className="max-w-4xl mx-auto space-y-12 pt-12">
+          <div className="flex flex-col md:flex-row items-center gap-12 text-left">
+            <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[var(--accent-color)] shadow-2xl flex-shrink-0 relative group">
+              <img
+                src="https://picsum.photos/seed/architect/500/500"
+                alt="Profile"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale hover:grayscale-0"
+              />
+              <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-full"></div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="inline-block text-[var(--accent-color)] text-sm tracking-[0.3em] font-bold uppercase border-b border-[var(--accent-color)] pb-2 opacity-80">
+                About The Author
+              </div>
+              <h1 className="text-5xl md:text-7xl font-serif font-black text-gray-900 tracking-tight leading-none">
+                Michael <br /> <span className="text-[var(--accent-color)] italic font-light">Ikoku</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-serif leading-relaxed text-gray-600">
+                Building digital cathedrals in the age of silicon. I bridge the gap between abstract theory and deployed reality.
+              </p>
+            </div>
+          </div >
+
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-[var(--accent-color)] to-transparent opacity-30"></div>
+        </div >
       )}
-    </section>
+    </section >
   );
 };

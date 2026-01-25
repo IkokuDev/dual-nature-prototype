@@ -27,7 +27,7 @@ const useTypewriter = (text: string, speed: number = 20, active: boolean) => {
   return displayedText;
 };
 
-export const Article: React.FC = () => {
+const ArticleDetail: React.FC = () => {
   const { id } = useParams();
   const { isDark } = useOutletContext<{ isDark: boolean }>();
   const [post, setPost] = useState<any>(null);
@@ -45,22 +45,22 @@ export const Article: React.FC = () => {
         } else {
           // Fallback mock
           setPost({
-             title: "The Reality of the Attractor",
-             category: "Classified",
-             image: "https://picsum.photos/seed/warp/1200/600",
-             date: { seconds: 1700086400 },
-             body: "Gravity is inverting. The pillars are growing from the ground up. \n\nWe are not explorers; we are fuel. The geometry of this place defies Euclid. I looked into the monitor and saw the event horizon. The user interface is melting. My reflection in the screen has no eyes.\n\nEnd of transmission."
+            title: "The Reality of the Attractor",
+            category: "Classified",
+            image: "https://picsum.photos/seed/warp/1200/600",
+            date: { seconds: 1700086400 },
+            body: "Gravity is inverting. The pillars are growing from the ground up. \n\nWe are not explorers; we are fuel. The geometry of this place defies Euclid. I looked into the monitor and saw the event horizon. The user interface is melting. My reflection in the screen has no eyes.\n\nEnd of transmission."
           });
         }
       } catch (e) {
         console.log("Using fallback content");
-         setPost({
-             title: "The Reality of the Attractor",
-             category: "Classified",
-             image: "https://picsum.photos/seed/warp/1200/600",
-             date: { seconds: 1700086400 },
-             body: "Gravity is inverting. The pillars are growing from the ground up. \n\nWe are not explorers; we are fuel. The geometry of this place defies Euclid. I looked into the monitor and saw the event horizon. The user interface is melting. My reflection in the screen has no eyes.\n\nEnd of transmission."
-          });
+        setPost({
+          title: "The Reality of the Attractor",
+          category: "Classified",
+          image: "https://picsum.photos/seed/warp/1200/600",
+          date: { seconds: 1700086400 },
+          body: "Gravity is inverting. The pillars are growing from the ground up. \n\nWe are not explorers; we are fuel. The geometry of this place defies Euclid. I looked into the monitor and saw the event horizon. The user interface is melting. My reflection in the screen has no eyes.\n\nEnd of transmission."
+        });
       }
       setLoading(false);
     };
@@ -77,7 +77,7 @@ export const Article: React.FC = () => {
     <article className="min-h-screen relative animate-fade-in pb-20">
       <div className="mb-8">
         <Link to="/" className={`text-xs font-bold tracking-widest uppercase ${isDark ? 'text-red-600 hover:text-red-400' : 'text-[var(--accent-color)] hover:text-white'}`}>
-           ← Return to {isDark ? 'Terminal' : 'Archive'}
+          ← Return to {isDark ? 'Terminal' : 'Archive'}
         </Link>
       </div>
 
@@ -97,7 +97,13 @@ export const Article: React.FC = () => {
           <div className="flex items-center text-xs font-bold uppercase tracking-widest opacity-50 mb-12 border-b border-gray-300 pb-8">
             <span>By Michael Ikoku</span>
             <span className="mx-4">•</span>
-            <span>{new Date(post.date.seconds * 1000).toLocaleDateString()}</span>
+            <span>
+              {post.createdAt?.seconds
+                ? new Date(post.createdAt.seconds * 1000).toLocaleDateString()
+                : post.date?.seconds
+                  ? new Date(post.date.seconds * 1000).toLocaleDateString()
+                  : 'Unknown Date'}
+            </span>
           </div>
           <div className="prose prose-lg prose-stone font-serif leading-loose">
             <ReactMarkdown>{post.body}</ReactMarkdown>
@@ -110,7 +116,7 @@ export const Article: React.FC = () => {
         <div className="max-w-4xl mx-auto border border-red-900 bg-black p-8 md:p-12 relative overflow-hidden">
           {/* Watermark */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45 pointer-events-none opacity-10 whitespace-nowrap">
-             <span className="text-[10rem] font-black text-red-900 font-mono">TOP SECRET</span>
+            <span className="text-[10rem] font-black text-red-900 font-mono">TOP SECRET</span>
           </div>
 
           <div className="border-b border-red-900 pb-4 mb-8 flex justify-between items-end font-mono text-red-600">
@@ -119,7 +125,7 @@ export const Article: React.FC = () => {
               <h1 className="text-2xl md:text-4xl font-bold uppercase mt-2">{post.title}</h1>
             </div>
             <div className="text-right text-xs">
-              <p>ID: {id?.substring(0,6).toUpperCase()}</p>
+              <p>ID: {id?.substring(0, 6).toUpperCase()}</p>
               <p>DATE: [REDACTED]</p>
             </div>
           </div>
@@ -133,3 +139,5 @@ export const Article: React.FC = () => {
     </article>
   );
 };
+
+export default ArticleDetail;

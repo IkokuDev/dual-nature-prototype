@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface ProjectCardProps {
+    id: string;
     title: string;
     role: string;
     company: string;
@@ -9,10 +11,10 @@ interface ProjectCardProps {
     skills: { name: string; val: string }[];
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ title, role, company, description, isDark, skills }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ id, title, role, company, description, isDark, skills }) => {
     return (
-        <div className={`
-      relative p-8 transition-all duration-500 overflow-hidden group
+        <Link to={`/project/${id}`} className={`
+      relative block p-8 transition-all duration-500 overflow-hidden group
       ${isDark
                 ? 'bg-[#050000] border border-[#330000] hover:border-red-900'
                 : 'bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] hover:border-[var(--accent-color)] backdrop-blur-sm'
@@ -65,6 +67,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, role, company, 
             {/* Hover Effect: Corner Brackets */}
             <div className={`absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 transition-all duration-300 ${isDark ? 'border-red-600' : 'border-[var(--accent-color)]'} opacity-0 group-hover:opacity-100`}></div>
             <div className={`absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 transition-all duration-300 ${isDark ? 'border-red-600' : 'border-[var(--accent-color)]'} opacity-0 group-hover:opacity-100`}></div>
-        </div>
+        </Link>
     );
 };

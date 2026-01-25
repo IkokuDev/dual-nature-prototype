@@ -27,6 +27,8 @@ export const Admin: React.FC = () => {
   const [role, setRole] = useState('');
   const [company, setCompany] = useState('');
   const [skills, setSkills] = useState('');
+  const [repoUrl, setRepoUrl] = useState('');
+  const [liveUrl, setLiveUrl] = useState('');
 
   // Helper to reset form
   const resetForm = () => {
@@ -37,6 +39,8 @@ export const Admin: React.FC = () => {
     setRole('');
     setCompany('');
     setSkills('');
+    setRepoUrl('');
+    setLiveUrl('');
     if (activeTab === 'light') setCategory('01');
     else if (activeTab === 'dark') setCategory('Journal');
     else setCategory('Project');
@@ -85,6 +89,8 @@ export const Admin: React.FC = () => {
     if (post.category === 'Project') {
       setRole(post.role || '');
       setCompany(post.company || '');
+      setRepoUrl(post.repoUrl || '');
+      setLiveUrl(post.liveUrl || '');
       if (post.skills && Array.isArray(post.skills)) {
         setSkills(post.skills.map((s: any) => `${s.name}:${s.val}`).join(', '));
       } else {
@@ -115,6 +121,8 @@ export const Admin: React.FC = () => {
       if (activeTab === 'projects') {
         docData.role = role || 'Engineer';
         docData.company = company || 'Unknown';
+        docData.repoUrl = repoUrl;
+        docData.liveUrl = liveUrl;
         docData.skills = skills.split(',').map(s => {
           const [name, val] = s.split(':').map(i => i.trim());
           return { name: name || s.trim(), val: val || 'Proficient' };
@@ -277,6 +285,23 @@ export const Admin: React.FC = () => {
                       <label className="block text-xs font-bold mb-2">COMPANY</label>
                       <input
                         value={company} onChange={e => setCompany(e.target.value)}
+                        className={`w-full p-3 border focus:outline-none ${inputBg} ${borderColor}`}
+                      />
+                    </div>
+                    {/* Repo and Live URLs */}
+                    <div>
+                      <label className="block text-xs font-bold mb-2">REPO URL</label>
+                      <input
+                        value={repoUrl} onChange={e => setRepoUrl(e.target.value)}
+                        placeholder="https://github.com/..."
+                        className={`w-full p-3 border focus:outline-none ${inputBg} ${borderColor}`}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold mb-2">LIVE URL</label>
+                      <input
+                        value={liveUrl} onChange={e => setLiveUrl(e.target.value)}
+                        placeholder="https://..."
                         className={`w-full p-3 border focus:outline-none ${inputBg} ${borderColor}`}
                       />
                     </div>
