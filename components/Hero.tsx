@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({ isDark }) => {
           <div className="flex flex-col md:flex-row items-center gap-12 text-left">
             <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[var(--accent-color)] shadow-2xl flex-shrink-0 relative group">
               <img
-                src="https://picsum.photos/seed/architect/500/500"
+                src="https://i.ibb.co/gZqGkRVM/IMG-5933-1.jpg"
                 alt="Profile"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale hover:grayscale-0"
               />
