@@ -39,8 +39,8 @@ export const Hero: React.FC<HeroProps> = ({ isDark }) => {
               <h1 className="text-5xl md:text-7xl font-serif font-black text-gray-900 tracking-tight leading-none">
                 Michael <br /> <span className="text-[var(--accent-color)] italic font-light">Ikoku</span>
               </h1>
-              <p className="text-xl md:text-2xl font-serif leading-relaxed text-gray-600">
-                Building digital cathedrals in the age of silicon. I bridge the gap between abstract theory and deployed reality.
+              <p className="text-xl md:text-2xl font-serif leading-relaxed text-white">
+                Results-driven Software Engineer and AI Specialist with over 5 years of experience developing and automating enterprise-level solutions. Expertise in web applications, AI-driven features, APIs, and workflow optimization. Proven in independent and team environments, delivering high-quality products on time.
               </p>
             </div>
           </div >
