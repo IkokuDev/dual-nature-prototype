@@ -34,15 +34,15 @@ export const Resume: React.FC<ResumeProps> = ({ isDark }) => {
   const content = {
     light: {
       header: "Software Architect",
-      title: "AI Architect of the Pre-Collapse",
+      title: "AI & Fintech Solutions Engineer",
       role: "Solutions Strategist",
       company: "Nakachi Consulting",
-      experience: "Designing the financial infrastructure for the next century. Merging ancient trade routes with high-frequency algorithmic liquidity pools.",
+      experience: "Building the Future.",
       skills: [
         { name: "Interstellar Communication", val: "IELTS 7.5/9" },
         { name: "Fintech Architecture", val: "Expert" },
         { name: "Python / Data Science", val: "Advanced" },
-        { name: "React / MERN", val: "Proficient" }
+        { name: "React / MERN", val: "Expert" }
       ],
       id: "MK-2024-SOLAR"
     },
