@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { collection, query, where, onSnapshot, orderBy } from 'firebase/firestore';
+import { collection, query, where, orderBy, getDocs } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { ProjectCard } from './ProjectCard';
 
@@ -11,24 +11,41 @@ export const Resume: React.FC<ResumeProps> = ({ isDark }) => {
   const [projects, setProjects] = useState<any[]>([]);
 
   useEffect(() => {
-    const q = query(
-      collection(db, "posts"),
-      where("category", "==", "Project"),
-      orderBy("createdAt", "desc")
-    );
+    const fetchProjects = async () => {
+      try {
+        const q = query(
+          collection(db, "posts"),
+          where("category", "==", "Project"),
+          orderBy("createdAt", "desc")
+        );
+        const snapshot = await getDocs(q);
+        const fetched = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        console.log('Fetched Projects:', fetched);
+        setProjects(fetched);
+      } catch (err) {
+        console.warn("Index fallback triggered for projects", err);
+        // Fallback: fetch all posts, filter in memory
+        try {
+          const fallbackQ = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+          const snap = await getDocs(fallbackQ);
+          const all = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          const filtered = all.filter((p: any) => p.category === 'Project');
+          console.log('Fallback fetched Projects:', filtered);
+          setProjects(filtered);
+        } catch (fallbackErr) {
+          const rawSnap = await getDocs(collection(db, "posts"));
+          const all = rawSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          const filtered = all.filter((p: any) => p.category === 'Project');
+          console.log('Raw fallback fetched Projects:', filtered);
+          setProjects(filtered);
+        }
+      }
+    };
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const fetched = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      console.log('Fetched Projects:', fetched);
-      setProjects(fetched);
-    }, (error) => {
-      console.error("Error fetching projects: ", error);
-    });
-
-    return () => unsubscribe();
+    fetchProjects();
   }, []);
 
   const content = {

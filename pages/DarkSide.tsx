@@ -31,9 +31,25 @@ export const DarkSide: React.FC = () => {
                 );
                 const snapshot = await getDocs(q);
                 const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Post));
+                console.log('Fetched Dark posts:', data);
                 setPosts(data);
             } catch (err) {
-                console.error("Failed to fetch dark side posts", err);
+                console.warn("Index fallback triggered for dark side", err);
+                // Fallback: fetch all posts, filter in memory
+                try {
+                    const fallbackQ = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+                    const snap = await getDocs(fallbackQ);
+                    const all = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as Post));
+                    const filtered = all.filter((p: any) => p.side === 'dark');
+                    console.log('Fallback fetched Dark posts:', filtered);
+                    setPosts(filtered);
+                } catch (fallbackErr) {
+                    const rawSnap = await getDocs(collection(db, "posts"));
+                    const all = rawSnap.docs.map(doc => ({ id: doc.id, ...doc.data() } as Post));
+                    const filtered = all.filter((p: any) => p.side === 'dark');
+                    console.log('Raw fallback fetched Dark posts:', filtered);
+                    setPosts(filtered);
+                }
             } finally {
                 setLoading(false);
             }

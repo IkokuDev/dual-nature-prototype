@@ -23,22 +23,33 @@ export const LightSide: React.FC = () => {
     useEffect(() => {
         const fetchChapters = async () => {
             try {
-                // Query for posts with type 'chapter' or side 'light'
-                // Currently assuming we will update Admin to save these fields
-                // For now, we can perhaps filter or just fetch all and filter in memory if schema isn't ready
-                // But let's write the query we WANT.
                 const q = query(
                     collection(db, "posts"),
                     where("side", "==", "light"),
                     orderBy("createdAt", "desc")
                 );
-
-                // Fallback for current data (if any) or handle empty
                 const snapshot = await getDocs(q);
                 const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Post));
+                console.log('Fetched Light chapters:', data);
                 setChapters(data);
             } catch (err) {
-                console.error("Failed to fetch light side chapters", err);
+                console.warn("Index fallback triggered for light side", err);
+                // Fallback: fetch all posts, filter in memory
+                try {
+                    const fallbackQ = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+                    const snap = await getDocs(fallbackQ);
+                    const all = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as Post));
+                    const filtered = all.filter(p => p.side === 'light');
+                    console.log('Fallback fetched Light chapters:', filtered);
+                    setChapters(filtered);
+                } catch (fallbackErr) {
+                    // Last resort: fetch without ordering
+                    const rawSnap = await getDocs(collection(db, "posts"));
+                    const all = rawSnap.docs.map(doc => ({ id: doc.id, ...doc.data() } as Post));
+                    const filtered = all.filter(p => p.side === 'light');
+                    console.log('Raw fallback fetched Light chapters:', filtered);
+                    setChapters(filtered);
+                }
             } finally {
                 setLoading(false);
             }
