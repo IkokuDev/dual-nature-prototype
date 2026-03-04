@@ -16,7 +16,10 @@ export const Hero: React.FC<HeroProps> = ({ isDark }) => {
             THE VOID<br />HUNTERS
           </h1>
           <p className="text-xl md:text-2xl text-[var(--secondary-text)] max-w-2xl mx-auto font-bold tracking-widest border-l-4 border-red-900 pl-6 text-left font-mono">
-            "Blessed is the mind too small for doubt."
+            "Blessed is the mind too small for doubt." 
+          </p>
+          <p className="text-xl md:text-2xl text-[var(--secondary-text)] max-w-2xl mx-auto font-bold tracking-widest border-l-4 border-red-900 pl-6 text-left font-mono">
+            This is a space for my fictional writing. Cosmic horror in the form of journal entries and short stories that slowly uncover a plot. Enjoy! 
           </p>
         </div>
       ) : (

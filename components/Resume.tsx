@@ -51,15 +51,16 @@ export const Resume: React.FC<ResumeProps> = ({ isDark }) => {
   const content = {
     light: {
       header: "Software Architect",
-      title: "AI & Fintech Solutions Engineer",
+      title: "CTO / AI & Fintech Solutions Engineer",
       role: "Solutions Strategist",
-      company: "Nakachi Consulting",
+      company: "visionFotge LTD",
       experience: "Building the Future.",
       skills: [
         { name: "Interstellar Communication", val: "IELTS 7.5/9" },
         { name: "Fintech Architecture", val: "Expert" },
         { name: "Python / Data Science", val: "Advanced" },
-        { name: "React / MERN", val: "Expert" }
+        { name: "React / MERN / PERN ", val: "Expert" },
+        { name: "CI/CD Workflows", val: "Expert" },
       ],
       id: "MK-2024-SOLAR"
     },
