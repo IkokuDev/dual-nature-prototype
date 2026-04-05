@@ -58,9 +58,9 @@ export const Layout: React.FC = () => {
           <nav className="flex justify-between items-center mb-12 sticky top-0 py-8 z-50 backdrop-blur-sm border-b border-[var(--border-color)]">
             <a href="/" className="text-3xl md:text-4xl font-bold uppercase burn-text tracking-widest heading-font hover:opacity-80 transition-opacity">
               {isDark ? (
-                <span>SARUGAMI</span>
+                <span>SARUGAMI(猿神)</span>
               ) : (
-                <span>M™</span>
+                <span>м¢нℓ™</span>
               )}
             </a>
             <Toggle isDark={isDark} onToggle={toggleTheme} />

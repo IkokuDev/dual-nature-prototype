@@ -16,10 +16,10 @@ export const Hero: React.FC<HeroProps> = ({ isDark }) => {
             THE VOID<br />HUNTERS
           </h1>
           <p className="text-xl md:text-2xl text-[var(--secondary-text)] max-w-2xl mx-auto font-bold tracking-widest border-l-4 border-red-900 pl-6 text-left font-mono">
-            "Blessed is the mind too small for doubt." 
+            This is a space for my fictional writing. Cosmic horror in the form of journal entries and short stories that slowly uncover a plot. Enjoy!
           </p>
           <p className="text-xl md:text-2xl text-[var(--secondary-text)] max-w-2xl mx-auto font-bold tracking-widest border-l-4 border-red-900 pl-6 text-left font-mono">
-            This is a space for my fictional writing. Cosmic horror in the form of journal entries and short stories that slowly uncover a plot. Enjoy! 
+            "Blessed is the mind too small for doubt."
           </p>
         </div>
       ) : (
@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ isDark }) => {
 
             <div className="space-y-6">
               <div className="inline-block text-[var(--accent-color)] text-sm tracking-[0.3em] font-bold uppercase border-b border-[var(--accent-color)] pb-2 opacity-80">
-                About The Author
+                About Me
               </div>
               <h1 className="text-5xl md:text-7xl font-serif font-black text-gray-900 tracking-tight leading-none">
                 Michael <br /> <span className="text-[var(--accent-color)] italic font-light">Ikoku</span>
